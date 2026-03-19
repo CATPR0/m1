@@ -1,0 +1,27 @@
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+local clicking = false
+
+-- Criar botão
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 150, 0, 50)
+button.Position = UDim2.new(0.5, -75, 0.8, 0)
+button.Text = "Auto Click: OFF"
+button.Parent = screenGui
+
+-- Função do botão
+button.MouseButton1Click:Connect(function()
+    clicking = not clicking
+    button.Text = clicking and "Auto Click: ON" or "Auto Click: OFF"
+end)
+
+-- Loop de clique
+while true do
+    if clicking then
+        mouse1click() -- função usada em exploits
+    end
+    task.wait(0.1) -- velocidade do click (menor = mais rápido)
+end
